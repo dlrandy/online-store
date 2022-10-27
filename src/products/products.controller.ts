@@ -1,58 +1,32 @@
-import { Controller, Get, Param, Render } from '@nestjs/common';
-
-@Controller('products')
+import { Controller, Get, Param, Render, Res } from "@nestjs/common";
+import { ProductsService } from "../products/products.service";
+@Controller("products")
 export class ProductsController {
-  static products = [
-    {
-      id: '1',
-      name: 'TV',
-      description: 'Best tv',
-      image: 'game.png',
-      price: '1000',
-    },
-    {
-      id: '2',
-      name: 'iPhone',
-      description: 'Best iPhone',
-      image: 'safe.png',
-      price: '999',
-    },
-    {
-      id: '3',
-      name: 'Chromecast',
-      description: 'Best Chromecast',
-      image: 'submarine.png',
-      price: '30',
-    },
-    {
-      id: '4',
-      name: 'Glasses',
-      description: 'Best Glasses',
-      image: 'game.png',
-      price: '100',
-    },
-  ];
-  @Get('/')
-  @Render('products/index')
-  index() {
+  constructor(private readonly productsService: ProductsService) { }
+  @Get("/")
+  @Render("products/index")
+  async index() {
     const viewData = {
-      products: ProductsController.products,
-      subtitle: 'List of products',
-      title: 'Products - Online Store',
+      products: await this.productsService.findAll(),
+      subtitle: "List of products",
+      title: "Products - Online Store",
     };
 
-    return { viewData: viewData };
+    return { viewData };
   }
 
-  @Get('/:id')
-  @Render('products/show')
-  show(@Param() params) {
-    const product = ProductsController.products[params.id - 1];
+  @Get("/:id")
+  async show(@Param() params, @Res() response) {
+    const product = await this.productsService.findOne(params.id);
+    if (product == null) {
+      return response.redirect("/products");
+    }
+
     const viewData = {
       product: product,
-      subtitle: product.name + ' - Product Information',
-      title: product.name + ' - Online Store',
+      subtitle: product.getName() + " - Product Information",
+      title: product.getName() + " - Online Store",
     };
-    return { viewData };
+    return response.render("products/show", { viewData });
   }
 }
