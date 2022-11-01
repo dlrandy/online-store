@@ -18,11 +18,14 @@
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> <span
                     class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav ms-auto"> <a class="nav-link active" href="#">Home</a> 
-                <a class="nav-link active"
-                        href="/products">Products</a> 
-                <a class="nav-link active"
-                        href="/about">About</a> </div>
+                <div class="navbar-nav ms-auto"> <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link active" href="/products">Products</a>
+                    <a class="nav-link active" href="/about">About</a>
+                </div>
+                <div class="vr bg-white mx-2 d-none d-lg-block"></div>
+                {{#if session.user}} <a class="nav-link active" href="/auth/logout">Logout ({{session.user.name}})</a>
+                {{else}} <a class="nav-link active" href="/auth/login">Login</a> <a class="nav-link active"
+                    href="/auth/register">Register</a> {{/if}}
             </div>
         </div>
     </nav>

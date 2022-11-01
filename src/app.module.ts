@@ -6,16 +6,20 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeOrmConfig } from "../ormconfig";
 import { ProductsService } from "./products/products.service";
 import { Product } from "./models/product.entity";
-import { AdminModule } from './admin/admin.module';
+import { AdminModule } from "./admin/admin.module";
+import { AuthModule } from "./auth/auth.module";
+import { User } from "./models/user.entity";
+import { UsersService } from "./users/users.service";
 @Global()
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([Product]),
+    TypeOrmModule.forFeature([Product, User]),
     AdminModule,
+    AuthModule,
   ],
   controllers: [AppController, ProductsController],
-  providers: [AppService, ProductsService],
-  exports: [ProductsService]
+  providers: [AppService, ProductsService, UsersService],
+  exports: [ProductsService, UsersService],
 })
-export class AppModule { } 
+export class AppModule { }
