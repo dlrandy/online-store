@@ -2,6 +2,7 @@
 <div class="card mb-4">
   <div class="card-header"> Create Products </div>
   <div class="card-body">
+    {{#if flashErrors}} {{#each flashErrors}} <p class="alert alert-danger">{{this}}</p> {{/each}} {{/if}}
     <form method="POST" enctype="multipart/form-data" action="/admin/products/store">
       <div class="row">
         <div class="col">
@@ -46,8 +47,9 @@
           <td>{{getId}}</td>
           <td>{{getName}}</td>
           <td><a class="btn btn-primary" href="/admin/products/{{getId}}">
-           <i class="bi-pencil"></i> </a> </td>
-          <td> <form action="/admin/products/{{getId}}" method="POST"> <button class="btn btn-danger"> <i
+              <i class="bi-pencil"></i> </a> </td>
+          <td>
+            <form action="/admin/products/{{getId}}" method="POST"> <button class="btn btn-danger"> <i
                   class="bi-trash"></i> </button> </form>
           </td>
         </tr> {{/each}} </tbody>

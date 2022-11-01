@@ -25,6 +25,11 @@ async function bootstrap() {
   );
   app.use(function (req, res, next) {
     res.locals.session = req.session;
+    const flashErrors: string[] = req.session.flashErrors;
+    if (flashErrors) {
+      res.locals.flashErrors = flashErrors;
+      req.session.flashErrors = null;
+    }
     next();
   });
   app.use("/admin", function (req, res, next) {
