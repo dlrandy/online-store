@@ -13,6 +13,7 @@ import { UsersService } from "./users/users.service";
 import { CartModule } from "./cart/cart.module";
 import { Order } from "./models/order.entity";
 import { Item } from "./models/item.entity";
+import { OrdersService } from "./orders/orders.service";
 @Global()
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { Item } from "./models/item.entity";
     CartModule,
   ],
   controllers: [AppController, ProductsController],
-  providers: [AppService, ProductsService, UsersService],
-  exports: [ProductsService, UsersService],
+  providers: [AppService, ProductsService, UsersService, OrdersService],
+  exports: [ProductsService, UsersService, OrdersService],
 })
 export class AppModule { }

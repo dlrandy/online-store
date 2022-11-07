@@ -25,4 +25,10 @@ export class UsersService {
       return null;
     }
   }
+  findOne(id: number): Promise<User> {
+    return this.usersRepository.findOneBy({ id });
+  }
+  updateBalance(id: number, balance: number) {
+    return this.usersRepository.update(id, { balance });
+  }
 }
