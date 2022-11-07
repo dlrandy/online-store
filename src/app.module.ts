@@ -10,6 +10,7 @@ import { AdminModule } from "./admin/admin.module";
 import { AuthModule } from "./auth/auth.module";
 import { User } from "./models/user.entity";
 import { UsersService } from "./users/users.service";
+import { CartModule } from "./cart/cart.module";
 @Global()
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UsersService } from "./users/users.service";
     TypeOrmModule.forFeature([Product, User]),
     AdminModule,
     AuthModule,
+    CartModule,
   ],
   controllers: [AppController, ProductsController],
   providers: [AppService, ProductsService, UsersService],
