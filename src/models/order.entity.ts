@@ -36,8 +36,8 @@ export class Order {
   setTotal(total: number) {
     this.total = total;
   }
-  getDate(): Date {
-    return this.date;
+  getDate(): string {
+    return this.date.toISOString().split("T")[0];
   }
   setDate(date: Date) {
     this.date = date;

@@ -1,11 +1,11 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: "mysql",
-  host: "localhost",
+  host: "bdg18d3sjyz7lqlxumbk-mysql.services.clever-cloud.com",
   port: 3306,
-  username: "root",
-  password: "root123456",
-  database: "online_store",
+  username: "uotxhhhqwesohycj",
+  password: "9VaYbfPpdrtCCO7qHVMY",
+  database: "bdg18d3sjyz7lqlxumbk",
   entities: ["dist/**/*.entity{.ts,.js}"],
   synchronize: true,
 };
