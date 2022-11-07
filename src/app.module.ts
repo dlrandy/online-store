@@ -11,11 +11,13 @@ import { AuthModule } from "./auth/auth.module";
 import { User } from "./models/user.entity";
 import { UsersService } from "./users/users.service";
 import { CartModule } from "./cart/cart.module";
+import { Order } from "./models/order.entity";
+import { Item } from "./models/item.entity";
 @Global()
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TypeOrmModule.forFeature([Product, User]),
+    TypeOrmModule.forFeature([Product, User, Order, Item]),
     AdminModule,
     AuthModule,
     CartModule,

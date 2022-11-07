@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Item } from "./item.entity";
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
@@ -47,5 +48,13 @@ export class Product {
       total += products[i].getPrice() * productsInSession[products[i].getId()];
     }
     return total;
+  }
+
+  @OneToMany(() => Item, item => item.product) items: Item[];
+  getItems(): Item[] {
+    return this.items;
+  }
+  setItems(items: Item[]) {
+    this.items = items;
   }
 }
